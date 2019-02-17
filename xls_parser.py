@@ -1,8 +1,8 @@
-
 ###################################################################################
-# For more information, see LICENCE in the main folder
 # Copyright 2019 seabeam@yahoo.com - Licensed under the Apache License, Version 2.0
+# For more information, see LICENCE in the main folder
 ###################################################################################
+
 from openpyxl import load_workbook
 from openpyxl.utils import *
 
