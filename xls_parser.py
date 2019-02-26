@@ -120,7 +120,7 @@ prefix '0x' supported" %(data))
             self.header['reset']: lambda cell: self.set_attr(field, 'reset', '%0d\'h%s' %(block.width, self.get_hex(cell.value))),
         }
 
-        for row in self.sheet[self.start_row+1:61]:
+        for row in self.sheet[self.start_row+1:self.sheet.max_row]:
             for cell in row:
                 if isinstance(cell.column, int):
                     column = get_column_letter(cell.column)
