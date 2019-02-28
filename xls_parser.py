@@ -71,6 +71,12 @@ prefix '0x' supported" %(data))
                     print("Warning: Invalid 'Access' column presented (Col: %s) %(column)")
             if cell.value == 'Repeat':
                 self.header['repeat'] = column
+                if self.in_range(column, self.header['block'], self.header['register']):
+                    self.header['block_repeat'] = column
+                elif self.in_range(column, self.header['register'], self.header['field']):
+                    self.header['reg_repeat'] = column
+                else:
+                    print("Warning: Invalid 'Repeat' column presented (Col: %s) %(column)")
             if cell.value == 'HDL Path':
                 self.header['hdl_path'] = column
             if cell.value == 'Description':
@@ -84,6 +90,10 @@ prefix '0x' supported" %(data))
                 self.header['bits'] = column
             if cell.value == 'Reset Value':
                 self.header['reset'] = column
+            if cell.value == 'Has Reset':
+                self.header['has_reset'] = column
+            if cell.value == 'Rand':
+                self.header['rand'] = column
                     
 
     def parse_bits(self, field, bits):
@@ -109,15 +119,19 @@ prefix '0x' supported" %(data))
         
         switch = {
             self.header['width']: lambda cell: self.set_attr(block, 'width', cell.value),
-            self.header['block_offset']: lambda cell: self.set_attr(block, 'offset', '%0d\'h%s' %(block.width, self.get_hex(cell.value))),
-            self.header['reg_offset']: lambda cell: self.set_attr(reg, 'offset', '%0d\'h%s' %(block.width, self.get_hex(cell.value))),
+            self.header['block_offset']: lambda cell: self.set_attr(block, 'offset', '%s' %(self.get_hex(cell.value))),
+            self.header['block_repeat']: lambda cell: self.set_attr(block, 'repeat', cell.value),
+            self.header['reg_offset']: lambda cell: self.set_attr(reg, 'offset', '%s' %(self.get_hex(cell.value))),
             self.header['reg_access']: lambda cell: self.set_attr(reg, 'access', cell.value),
-            self.header['repeat']: lambda cell: self.set_attr(reg, 'repeat', cell.value),
+            self.header['reg_repeat']: lambda cell: self.set_attr(reg, 'repeat', cell.value),
             self.header['hdl_path']: lambda cell: self.set_attr(reg, 'hdl_path', cell.value),
             self.header['reg_description']: lambda cell: self.set_attr(reg, 'description', cell.value),
             self.header['bits']: lambda cell: self.parse_bits(field, cell.value),
             self.header['field_access']: lambda cell: self.set_attr(field, 'access', cell.value),
-            self.header['reset']: lambda cell: self.set_attr(field, 'reset', '%0d\'h%s' %(block.width, self.get_hex(cell.value))),
+            self.header['reset']: lambda cell: self.set_attr(field, 'reset', '%s' %(self.get_hex(cell.value))),
+            self.header['has_reset']: lambda cell: self.set_attr(field, 'has_reset', cell.value),
+            self.header['rand']: lambda cell: self.set_attr(field, 'is_rand', cell.value),
+            self.header['field_description']: lambda cell: self.set_attr(field, 'description', cell.value),
         }
 
         for row in self.sheet[self.start_row+1:self.sheet.max_row]:

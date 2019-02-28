@@ -1,5 +1,5 @@
-{% for key, node in root %}
-  {% for rkey, reg in node %}
+{% for key, block in root %}
+  {% for rkey, reg in block %}
 
 class reg_{{ module }}_{{ reg.name }} extends uvm_reg;
     {% for fkey, field in reg %}
@@ -18,8 +18,8 @@ class reg_{{ module }}_{{ reg.name }} extends uvm_reg;
     
     {{ field.name }} = new("{{ field.name }}");
     {{ field.name }}.configure(.parent(this), .size({{ field.size }}), .lsb_pos({{ field.lsb_pos }}),
-                               .access("{{ field.access.upper() }}"), .volatile(0), .reset({{ field.reset }}),
-                               .has_reset(1), .is_rand(0), .individually_accessible(0));
+                               .access("{{ field.access.upper() }}"), .volatile(0), .reset({{ block.width }}'h{{ field.reset }}),
+                               .has_reset({{ field.has_reset }}), .is_rand({{ field.is_rand }}), .individually_accessible(0));
     {% endfor %}
   endfunction : build
 endclass : reg_{{ module }}_{{ reg.name }}
