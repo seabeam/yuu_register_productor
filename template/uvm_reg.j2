@@ -11,7 +11,7 @@ class reg_{{ module }}_{{ reg.name }} extends uvm_reg;
                int has_coverage
                );
     super.new(name, n_bits, has_coverage);
-  endfunction : new
+  endfunction
 
   virtual function void build();
     {% for fkey, field in reg %}
@@ -21,7 +21,7 @@ class reg_{{ module }}_{{ reg.name }} extends uvm_reg;
                                .access("{{ field.access.upper() }}"), .volatile(0), .reset({{ block.width }}'h{{ field.reset }}),
                                .has_reset({{ field.has_reset }}), .is_rand({{ field.is_rand }}), .individually_accessible(0));
     {% endfor %}
-  endfunction : build
+  endfunction
 endclass : reg_{{ module }}_{{ reg.name }}
   {% endfor %}
 {% endfor %}

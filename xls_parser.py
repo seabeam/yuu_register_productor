@@ -159,5 +159,100 @@ prefix '0x' supported" %(data))
         return root
 
 
+    def build_res_field(self, name, lsb_pos, size):
+        field = RegisterNode(name)
+        field.lsb_pos   = lsb_pos
+        field.size      = size
+        field.access    = 'ro'
+        field.reset     = 0
+        field.has_reset = 1
+        field.is_rand   = 0
+        field.reserved  = True
+        field.description = "Reserved bit(s)"
+        return field
+
+
+    def fill_reserved(self, root):
+        for key, block in root:
+            for key, reg in block:
+                bits = {}
+                exclusive_field = False
+                for key, field in reg:
+                    # exclusive fields, no more process
+                    if field.size == block.width:
+                        field.reserved = False
+                        exclusive_field = True
+                        break
+                    bits[field.lsb_pos] = field.size
+                    field.reserved = False
+
+                if not exclusive_field:
+                    # ordered by field lsb position
+                    bits_tup = sorted(bits.items(), key=lambda x:x[0])
+                    res_num = 0
+                    # if the position of field is not 0, add a reserved field
+                    if bits_tup[0][0] != 0:
+                        res_name = "res_0"
+                        res_field = self.build_res_field(res_name, 0, bits_tup[0][0])
+                        res_num = 1
+                        reg[res_name] = res_field
+                    for idx in range(len(bits_tup)):
+                        # if it's the last field, the upper limit of field is set to register width
+                        if idx+1 == len(bits_tup):
+                            upper = block.width
+                        # normal field, the upper limit set to position of the adjacent higher field
+                        else:
+                            upper = bits_tup[idx+1][0]
+                        # if the bit occupy of lower field overlaps the adjacent higher field, report error
+                        if bits_tup[idx][0] + bits_tup[idx][1] > upper:
+                            print("Error: Field address conflict in register %s" %(reg.name))
+                        # if there is a gap between lower field and the adjacent higher field, add a reserved field
+                        elif bits_tup[idx][0] + bits_tup[idx][1] < upper:
+                            res_name = "res_%0d" %(res_num)
+                            res_num += 1
+                            res_field = self.build_res_field(res_name, bits_tup[idx][0] + bits_tup[idx][1], upper - (bits_tup[idx][0] + bits_tup[idx][1]))
+                            reg[res_name] = res_field
+        return root
+
+
+    def reorder_by_lsb(self, root):
+        for key, block in root:
+            for key, reg in block:
+                order_fields = [RegisterNode("placeholder")]*block.width
+                name_fields = []
+                for key, field in reg:
+                    order_fields[field.lsb_pos] = field
+                    name_fields.append(field.name)
+                for name in name_fields:
+                    del reg[name]
+                reg_reset = 0
+                order_fields.reverse()
+                for field in order_fields:
+                    if field.name != "placeholder":
+                        reg[field.name] = field
+                        if isinstance(field.reset, str):
+                            reg_reset += int(field.reset, 16)<<field.lsb_pos
+                        else:
+                            reg_reset += field.reset<<field.lsb_pos
+                reg.reset = reg_reset
+        return root
+
+
 def is_node(item):
     return isinstance(item, RegisterNode)
+
+
+def get_bit_reset(reset, pos):
+    return (reset & (1<<pos)) >> pos
+
+
+def format_hex(block_offset, reg_offset):
+    if isinstance(block_offset, str):
+        block_offset_hex = int(block_offset, 16)
+    else:
+        block_offset_hex = block_offset
+    if isinstance(reg_offset, str):
+        reg_offset_hex = int(reg_offset, 16)
+    else:
+        reg_offset_hex = reg_offset
+    return "0x%08X" %(block_offset_hex+reg_offset_hex)

@@ -24,6 +24,12 @@ class RegisterNode(object):
     def __getattr__(self, key):
         return self.attrs[key]
        
+    def __delattr__(self, key):
+        del self.attrs[key]
+
+    def __delitem__(self, key):
+        del self.items[key]
+
 def walk(node, depth=0):
     for key, value in node:
         walk(value, depth+2)
