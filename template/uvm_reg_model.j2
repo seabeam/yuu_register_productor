@@ -4,8 +4,8 @@
 
 `ifndef {{ module.upper() }}_RAL_MODEL_SV
 `define {{ module.upper() }}_RAL_MODEL_SV
-{% include "uvm_reg.j2" %}
-{% include "uvm_reg_block.j2" %}
+{% include "uvm_reg.svh" %}
+{% include "uvm_reg_block.svh" %}
 
 class {{ module }}_ral_model extends uvm_reg_block;
   {% for key, block in root %}

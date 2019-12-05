@@ -14,11 +14,11 @@ from xls_parser import XLSParser, get_bit_reset, format_hex
 
 
 if __name__ == '__main__':
-    arg_parser = argparse.ArgumentParser(description="Register generator argument process")
-    arg_parser.add_argument('-n', '--name', required=True, dest='module_name')
-    arg_parser.add_argument('-t', '--template', required=True, dest='template_name')
-    arg_parser.add_argument('-i', '--input', required=True, dest='input_xlsx')
-    arg_parser.add_argument('-o', '--output', required=False, dest='output_path', default='./')
+    arg_parser = argparse.ArgumentParser(description="Register utils generator for DFV")
+    arg_parser.add_argument('-n', '--name', required=True, dest='module_name', help='[Required] Expected module name')
+    arg_parser.add_argument('-t', '--template', required=True, dest='template_name', help='[Required] Template name, file extension should be .j2')
+    arg_parser.add_argument('-i', '--input', required=True, dest='input_xlsx', help='[Required] xlsx file for generator input')
+    arg_parser.add_argument('-o', '--output', required=False, dest='output_path', default='./', help='[Optional] Output path, current path by default')
     args = arg_parser.parse_args()
     script_dir = os.path.dirname(os.path.abspath(__file__))
 
