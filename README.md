@@ -10,3 +10,17 @@ Under Apache License, Version 2.0
 
 ## More
 Feel free to contact via email: seabeam@yahoo.com
+
+## Usage
+usage: yrp.py [-h] -n MODULE_NAME -t TEMPLATE_NAME -i INPUT_XLSX [-o OUTPUT_PATH]
+
+optional arguments:  
+　-h, --help　　　　　　show this help message and exit  
+　-n MODULE_NAME, --name MODULE_NAME  
+　　　　　　　　　　　　　[Required] Expected module name  
+　-t TEMPLATE_NAME, --template TEMPLATE_NAME  
+　　　　　　　　　　　　　[Required] Template name, file extension should be .j2  
+　-i INPUT_XLSX, --input INPUT_XLSX  
+　　　　　　　　　　　　　[Required] xlsx file for generator input  
+　-o OUTPUT_PATH, --output OUTPUT_PATH  
+　　　　　　　　　　　　　[Optional] Output path, current path by default  
