@@ -17,10 +17,10 @@ usage: yrp.py [-h] -n MODULE_NAME -t TEMPLATE_NAME -i INPUT_XLSX [-o OUTPUT_PATH
 optional arguments:  
 　-h, --help　　　　　　show this help message and exit  
 　-n MODULE_NAME, --name MODULE_NAME  
-　　　　　　　　　　　　　[Required] Expected module name  
+　　　　　　　　　　　　[Required] Expected module name  
 　-t TEMPLATE_NAME, --template TEMPLATE_NAME  
-　　　　　　　　　　　　　[Required] Template name, file extension should be .j2  
+　　　　　　　　　　　　[Required] Template name, file extension should be .j2  
 　-i INPUT_XLSX, --input INPUT_XLSX  
-　　　　　　　　　　　　　[Required] xlsx file for generator input  
+　　　　　　　　　　　　[Required] xlsx file for generator input  
 　-o OUTPUT_PATH, --output OUTPUT_PATH  
-　　　　　　　　　　　　　[Optional] Output path, current path by default  
+　　　　　　　　　　　　[Optional] Output path, current path by default  
