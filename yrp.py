@@ -1,3 +1,4 @@
+#!/usr/bin/python
 ###################################################################################
 # Copyright 2019 seabeam@yahoo.com - Licensed under the Apache License, Version 2.0
 # For more information, see LICENCE in the main folder
@@ -16,11 +17,13 @@ if __name__ == '__main__':
     arg_parser = argparse.ArgumentParser(description="Register generator argument process")
     arg_parser.add_argument('-n', '--name', required=True, dest='module_name')
     arg_parser.add_argument('-t', '--template', required=True, dest='template_name')
+    arg_parser.add_argument('-i', '--input', required=True, dest='input_xlsx')
+    arg_parser.add_argument('-o', '--output', required=False, dest='output_path', default='./')
     args = arg_parser.parse_args()
     script_dir = os.path.dirname(os.path.abspath(__file__))
 
     parser = XLSParser()
-    parser.get_sheet('%s/%s.xlsx' %(script_dir, args.module_name))
+    parser.get_sheet('%s' %(args.input_xlsx))
 
     template_dir = '%s/template' %(script_dir)
     env = Environment(loader=FileSystemLoader(template_dir))
@@ -34,14 +37,15 @@ if __name__ == '__main__':
     root = parser.fill_reserved(root)
     root = parser.reorder_by_lsb(root)
 
-    print(walk(root))
-    try:
-        os.mkdir('output')
-    except:
-        print("Output folder exists")
+    if not os.path.isdir('%s' %args.output_path):
+        print("Output folder (%s) cannot be reached" %(args.output_path))
+        exit(1)
+
     if args.template_name == 'html.j2':
-        with open('./output/%s.htm' %(args.module_name), 'w', encoding='UTF-8') as f:
+        with open('%s/%s.htm' %(args.output_path, args.module_name), 'w', encoding='UTF-8') as f:
             f.write(template.render(module=args.module_name, root=root, width=32))
     elif args.template_name == 'uvm_reg_model.j2':
-        with open('./output/%s_ral_model.sv' %(args.module_name), 'w', encoding='UTF-8') as f:
+        with open('%s/%s_ral_model.sv' %(args.output_path, args.module_name), 'w', encoding='UTF-8') as f:
             f.write(template.render(module=args.module_name, root=root, width=32))
+    
+    print("Register productor generate done")
