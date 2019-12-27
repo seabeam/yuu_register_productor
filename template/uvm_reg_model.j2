@@ -21,7 +21,7 @@ class {{ module }}_ral_model extends uvm_reg_block;
     {% for key, block in root %}
 
     {{ block.name }} = new("{{ block.name }}");
-    {{ block.name }}.configuration(this);
+    {{ block.name }}.configure(this);
     {{ block.name }}.build();
     default_map.add_submap({{ block.name }}.default_map, {{ block.width }}'h{{ block.offset }});
     {% endfor %}
