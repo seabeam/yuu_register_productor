@@ -144,12 +144,12 @@ Main components
 
 @media only screen and (min-width: 900px) {
   .yuu-main-content {
-    padding-top: 20%;
+    padding-top: 10%;
   }
 }
 
 header {
-  position: absolute;
+  position: fixed;
   top: 0%;
   left: 0;
   height: 0%;
@@ -355,4 +355,12 @@ header.is-fixed {
   width: 0;
   height: 4em;
   margin-top: -4em;
+}
+
+#divider {
+  align-items: left;
+  display: inline-block;
+  width: 80%;
+  color: #ede8d6;
+  size: 2;
 }

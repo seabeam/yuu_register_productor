@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewpoint" content="width=device-width, initial-scale=1">
 
-  <link href="../html/css/reset.css"  rel="stylesheet">
-  <link href="../html/css/font.css"   rel="stylesheet" type="text/css">
-  <link href="../html/css/style.css"  rel="stylesheet">
-  <script src="../html/js/modernizr.js"></script>
+  <link href="html_{{ module }}/css/reset.css"  rel="stylesheet">
+  <link href="html_{{ module }}/css/font.css"   rel="stylesheet" type="text/css">
+  <link href="html_{{ module }}/css/style.css"  rel="stylesheet">
+  <script src="html_{{ module }}/js/modernizr.js"></script>
 </head>
 <body>
   <header>
@@ -18,7 +18,7 @@
     {% for key, block in root %}
       {% for key, reg in block %}
     <div id="information">&nbsp;</div>
-    <hr align=left width=80% color=#ede8d6 size=1>
+    <hr id="divider" color=#ede8d6>
     <div id="information">&nbsp;</div>
     <h3 id="{{reg.name}}" class="section">{{reg.name}}: {{block.offset | format_hex(reg.offset)}}</h3>
     <div id="information">{{reg.description}}</div>
@@ -92,7 +92,7 @@
     </ul>
   </nav>
   
-  <script src="../html/js/jquery.min.js"></script>
-  <script src="../html/js/main.js"></script>
+  <script src="html_{{ module }}/js/jquery.min.js"></script>
+  <script src="html_{{ module }}/js/main.js"></script>
 </body>
 </html>

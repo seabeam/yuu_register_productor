@@ -4,6 +4,7 @@
 # For more information, see LICENCE in the main folder
 ###################################################################################
 import os
+import shutil
 import argparse
 
 from openpyxl import load_workbook
@@ -43,6 +44,11 @@ if __name__ == '__main__':
 
     if args.template_name == 'html.j2':
         with open('%s/%s.htm' %(args.output_path, args.module_name), 'w', encoding='UTF-8') as f:
+            src = "%s/html" %(script_dir)
+            des = "%s/html_%s" %(args.output_path, args.module_name)
+            if os.path.isdir(des):
+                shutil.rmtree(des)
+            shutil.copytree(src, des)
             f.write(template.render(module=args.module_name, root=root, width=32))
     elif args.template_name == 'uvm_reg_model.j2':
         with open('%s/%s_ral_model.sv' %(args.output_path, args.module_name), 'w', encoding='UTF-8') as f:
