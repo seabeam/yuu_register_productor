@@ -121,12 +121,12 @@ prefix '0x' supported" %(data))
             self.header['block_offset']: lambda cell: self.set_attr(block, 'offset', self.get_hex(cell.value)),
             self.header['block_repeat']: lambda cell: self.set_attr(block, 'repeat', cell.value),
             self.header['reg_offset']: lambda cell: self.set_attr(reg, 'offset', self.get_hex(cell.value)),
-            self.header['reg_access']: lambda cell: self.set_attr(reg, 'access', cell.value),
+            self.header['reg_access']: lambda cell: self.set_attr(reg, 'access', cell.value.upper()),
             self.header['reg_repeat']: lambda cell: self.set_attr(reg, 'repeat', cell.value),
             self.header['hdl_path']: lambda cell: self.set_attr(reg, 'hdl_path', cell.value),
             self.header['reg_description']: lambda cell: self.set_attr(reg, 'description', cell.value),
             self.header['bits']: lambda cell: self.parse_bits(field, cell.value),
-            self.header['field_access']: lambda cell: self.set_attr(field, 'access', cell.value),
+            self.header['field_access']: lambda cell: self.set_attr(field, 'access', cell.value.upper()),
             self.header['reset']: lambda cell: self.set_attr(field, 'reset', self.get_hex(cell.value)),
             self.header['has_reset']: lambda cell: self.set_attr(field, 'has_reset', cell.value),
             self.header['rand']: lambda cell: self.set_attr(field, 'is_rand', cell.value),
@@ -163,7 +163,7 @@ prefix '0x' supported" %(data))
         field = RegisterNode(name)
         field.lsb_pos   = lsb_pos
         field.size      = size
-        field.access    = 'ro'
+        field.access    = 'RO'
         field.reset     = 0
         field.has_reset = 1
         field.is_rand   = 0

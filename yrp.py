@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 ###################################################################################
 # Copyright 2019 seabeam@yahoo.com - Licensed under the Apache License, Version 2.0
 # For more information, see LICENCE in the main folder

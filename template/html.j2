@@ -10,5 +10,89 @@
   <script src="../html/js/modernizr.js"></script>
 </head>
 <body>
+  <header>
+    <div id="header-text">{{ module }} register document</div>
+    <a id="yuu-menu-trigger" href="#0"><span class="yuu-menu-text">MAP</span><span class="yuu-menu-icon"></span></a>
+  </header>
+  <main class="yuu-main-content">
+    {% for key, block in root %}
+      {% for key, reg in block %}
+    <div id="information">&nbsp;</div>
+    <hr align=left width=80% color=#ede8d6 size=1>
+    <div id="information">&nbsp;</div>
+    <h3 id="{{reg.name}}" class="section">{{reg.name}}: {{block.offset | format_hex(reg.offset)}}</h3>
+    <div id="information">{{reg.description}}</div>
+    <div id="information">&nbsp;</div>
+    <div id="attribute">Access: {{reg.access}}</div>
+    <table class="reg-table">
+      <thead>
+        <tr>
+          <th></th>
+          {% for idx in range(0, block.width) %}
+          <th>{{block.width-1-idx}}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>name</th>
+          {% for key, field in reg %}
+          {% if field.reserved %}
+          <td colspan="{{field.size}}" id="reserved-field">{{field.name}}</td>
+          {% else %}
+          <td colspan="{{field.size}}" id="used-field">{{field.name}}</td>
+          {% endif %}
+          {% endfor %}
+        </tr>
+        <tr>
+          <th>access</th>
+          {% for key, field in reg %}
+          <td colspan="{{field.size}}">{{field.access}}</td>
+          {% endfor %}
+        </tr>
+        <tr>
+          <th>reset</th>
+          {% for idx in range(block.width-1, -1, -1) %}
+          <td>{{reg.reset | get_bit_reset(idx)}}</td>
+          {% endfor %}
+        </tr>
+      </tbody>
+    </table>
+    {% for key, field in reg %}
+    <div id="information">&nbsp;</div>
+    <h4>{{field.name}}</h4>
+    {% if field.size > 1 %}
+    <div id="attribute">Bits: [{{field.lsb_pos+field.size-1}}:{{field.lsb_pos}}]</div>
+    {% else %}
+    <div id="attribute">Bits: [{{field.lsb_pos}}]</div>
+    {% endif %}
+    <div id="attribute">Access: {{field.access}}</div>
+    <div id="information">&nbsp;</div>
+    <div id="information">{{field.description}}</div>
+    <div id="information">&nbsp;</div>
+    {% endfor %}
+    <div id="information">&nbsp;</div>
+    <div id="information">&nbsp;</div>
+      {% endfor %}
+    {% endfor %}
+  </main>
+
+  <nav id="yuu-lateral-nav">
+    <ul class="yuu-navigation">
+      {% for key, block in root %}
+      <li class="item-has-children">
+        <a href="#0">{{block.name}} (0x{{block.offset}})</a>
+        <ul class="yuu-sub-menu">
+          {% for key, reg in block %}
+          <li><a href="#{{reg.name}}">{{reg.name}}</a></li>
+          {% endfor %}
+        </ul>
+      </li>
+      {% endfor %}
+    </ul>
+  </nav>
+  
+  <script src="../html/js/jquery.min.js"></script>
+  <script src="../html/js/main.js"></script>
 </body>
 </html>
