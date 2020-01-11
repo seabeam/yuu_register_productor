@@ -15,8 +15,8 @@ For HTML5 code exist in HTML template, only new version of browser supported(Bug
 Feel free to contact via email: seabeam@yahoo.com
 
 ## Usage
-usage: yrp.py [-h] -n MODULE_NAME -t TEMPLATE_NAME -i INPUT_XLSX
-              [-o OUTPUT_PATH] [-f] [-c]
+usage: yrp.py [-h] -n MODULE_NAME -t TEMPLATE_NAME -i INPUT_XLSX  
+　　　　　　[-o OUTPUT_PATH] [-f] [-c]
 
 Register utils generator for DFV
 
@@ -30,7 +30,7 @@ optional arguments:
 　　　　　　　　　　　　[Required] xlsx file for generator input  
 　-o OUTPUT_PATH, --output OUTPUT_PATH  
 　　　　　　　　　　　　[Optional] Output path, current path by default  
-　-f, --factory
-　　　　　　　　　　　　[Optional] Use UVM factory
-　-c, --coverage
-　　　　　　　　　　　　[Optional] Use functional coverage
+　-f, --factory  
+　　　　　　　　　　　　[Optional] Use UVM factory  
+　-c, --coverage  
+　　　　　　　　　　　　[Optional] Use functional coverage  
