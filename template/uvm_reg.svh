@@ -26,7 +26,7 @@ class reg_{{ module }}_{{ reg.name }} extends uvm_reg;
     {{ field.name }} = new("{{ field.name }}");
     {% endif %}
     {{ field.name }}.configure(.parent(this), .size({{ field.size }}), .lsb_pos({{ field.lsb_pos }}),
-                               .access("{{ field.access.upper() }}"), .volatile(0), .reset({{ block.width }}'h{{ field.reset }}),
+                               .access("{{ field.access.upper() }}"), .volatile({{ field.is_volatile }}), .reset({{ block.width }}'h{{ field.reset }}),
                                .has_reset({{ field.has_reset }}), .is_rand({{ field.is_rand }}), .individually_accessible(0));
     {% endfor %}
   endfunction

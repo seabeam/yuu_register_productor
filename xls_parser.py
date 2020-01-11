@@ -93,7 +93,11 @@ prefix '0x' supported" %(data))
                 self.header['has_reset'] = column
             if cell.value == 'Rand':
                 self.header['rand'] = column
+            if cell.value == 'Volatile':
+                self.header['volatile'] = column
+
                     
+
 
     def parse_bits(self, field, bits):
         try:
@@ -130,6 +134,7 @@ prefix '0x' supported" %(data))
             self.header['reset']: lambda cell: self.set_attr(field, 'reset', self.get_hex(cell.value)),
             self.header['has_reset']: lambda cell: self.set_attr(field, 'has_reset', cell.value),
             self.header['rand']: lambda cell: self.set_attr(field, 'is_rand', cell.value),
+            self.header['volatile']: lambda cell: self.set_attr(field, 'is_volatile', cell.value),
             self.header['field_description']: lambda cell: self.set_attr(field, 'description', cell.value),
         }
 
@@ -161,13 +166,14 @@ prefix '0x' supported" %(data))
 
     def build_res_field(self, name, lsb_pos, size):
         field = RegisterNode(name)
-        field.lsb_pos   = lsb_pos
-        field.size      = size
-        field.access    = 'RO'
-        field.reset     = 0
+        field.lsb_pos = lsb_pos
+        field.size = size
+        field.access = 'RO'
+        field.reset = 0
         field.has_reset = 1
-        field.is_rand   = 0
-        field.reserved  = True
+        field.is_rand  = 0
+        field.is_volatile = 0
+        field.reserved = True
         field.description = "Reserved bit(s)"
         return field
 
