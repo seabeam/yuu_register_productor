@@ -1,12 +1,15 @@
 # yuu_register_productor
-UVM register utility generation by inputting xls table.
-It has a full template to generate uvm register, you can implement your own template for register HTML, register FW code, RTL etc.
+Register utility by inputting xls table.
+It has a full template to generate uvm register, register HTML. You can implement your own template for register FW code, RTL etc.
 
 ## Dependency
 openpyxl jinja2
 
 ## License
 Under Apache License, Version 2.0
+
+## NOTICE
+For HTML5 code exist in HTML template, only new version of browser supported(Bug have exclude Chrome)
 
 ## More
 Feel free to contact via email: seabeam@yahoo.com
