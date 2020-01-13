@@ -130,7 +130,7 @@ Main components
   line-height: 150%;
 }
 
-.yuu-main-content.lateral-menu-is-open {
+.yuu-main-content.address-map-open {
   -webkit-transform: translateX(15.4%);
   -moz-transform: translateX(15.4%);
   -ms-transform: translateX(15.4%);
@@ -169,7 +169,7 @@ header {
   transition-duration: 0.4s;
 }
 
-header.lateral-menu-is-open {
+header.address-map-open {
   /* translate to show the lateral menu */
   -webkit-transform: translateX(15.4%);
   -moz-transform: translateX(15.4%);
@@ -231,7 +231,7 @@ header.is-fixed {
   }
 }
 
-#yuu-lateral-nav {
+.yuu-address-map {
   position: fixed;
   height: 100%;
   left: 0;
@@ -244,46 +244,34 @@ header.is-fixed {
   overflow: auto;
   overflow-y: auto;
   
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
   -webkit-transition: -webkit-transform .4s 0s, visibility 0s .4s;
   -moz-transition: -moz-transform .4s 0s, visibility 0s .4s;
   transition: transform .4s 0s, visibility 0s .4s;
- 
-  -webkit-transform: translateX(-80px);
-  -moz-transform: translateX(-80px);
-  -ms-transform: translateX(-80px);
-  -o-transform: translateX(-80px);
-  transform: translateX(-80px);
 }
-#yuu-lateral-nav .yuu-navigation {
-  margin: auto;
+
+.yuu-address-map > ul {
+  margin: 2% 0;
 }
-#yuu-lateral-nav .yuu-sub-menu {
-  padding: 0 10px 20px 15px;
+
+.yuu-address-map >ul > li >ul {
+  padding: 0 0.5%;
   display: none;
 }
-#yuu-lateral-nav a {
+.yuu-address-map a {
   display: block;
   line-height: 2em;
   padding: 0 16px 0 32px;
   color: #aab5b7;
 }
-#yuu-lateral-nav a.current {
+.yuu-address-map a.current {
   background-color: #3a4a4d;
   color: #fff;
 }
-.no-touch #yuu-lateral-nav a:hover {
+.no-touch .yuu-address-map a:hover {
   color: #fff;
 }
-@media only screen and (min-width: 1000px) {
-  #yuu-lateral-nav .yuu-navigation {
-    margin: 20px 0;
-  }
-}
-#yuu-lateral-nav.lateral-menu-is-open {
+
+.yuu-address-map.address-map-open {
   -webkit-transform: translateX(0);
   -moz-transform: translateX(0);
   -ms-transform: translateX(0);
@@ -297,12 +285,11 @@ header.is-fixed {
   -webkit-overflow-scrolling: touch;
 }
 
-
-#yuu-lateral-nav .item-has-children > a {
+.yuu-address-map .yuu-reg-block > a {
   position: relative;
   font-weight: 600;
 }
-#yuu-lateral-nav .item-has-children > a::after {
+.yuu-address-map .yuu-reg-block > a::after {
   content: '';
   display: block;
   height: 11px;
@@ -310,26 +297,14 @@ header.is-fixed {
   position: absolute;
   top: 50%;
   bottom: auto;
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
-  transform: translateY(-50%);
   right: 1em;
-
-  -webkit-transition-property: -webkit-transform;
-  -moz-transition-property: -moz-transform;
-  transition-property: transform;
-  -webkit-transition-duration: 0.2s;
-  -moz-transition-duration: 0.2s;
-  transition-duration: 0.2s;
 }
-#yuu-lateral-nav .item-has-children > a.submenu-open::after {
-  -webkit-transform: translateY(-50%) rotate(90deg);
+.yuu-address-map .yuu-reg-block > a.block-open::after {
+  /* -webkit-transform: translateY(-50%) rotate(90deg);
   -moz-transform: translateY(-50%) rotate(90deg);
   -ms-transform: translateY(-50%) rotate(90deg);
   -o-transform: translateY(-50%) rotate(90deg);
-  transform: translateY(-50%) rotate(90deg);
+  transform: translateY(-50%) rotate(90deg); */
 }
 
 #header-text {

@@ -77,14 +77,14 @@
     {% endfor %}
   </main>
 
-  <nav id="yuu-lateral-nav">
-    <ul class="yuu-navigation">
+  <nav class="yuu-address-map">
+    <ul>
       {% for key, block in root %}
-      <li class="item-has-children">
+      <li class="yuu-reg-block">
         <a href="#0">{{block.name}} (0x{{block.offset}})</a>
-        <ul class="yuu-sub-menu">
+        <ul>
           {% for key, reg in block %}
-          <li><a href="#{{reg.name}}">{{reg.name}}</a></li>
+          <li class="yuu-reg"><a href="#{{reg.name}}">{{reg.name}}</a></li>
           {% endfor %}
         </ul>
       </li>

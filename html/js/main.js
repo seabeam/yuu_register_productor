@@ -22,11 +22,11 @@ jQuery(document).ready(function($){
 		event.preventDefault();
 		
 		$lateral_menu_trigger.toggleClass('is-clicked');
-		$navigation.toggleClass('lateral-menu-is-open');
-		$content_wrapper.toggleClass('lateral-menu-is-open').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function() {
+		$navigation.toggleClass('address-map-open');
+		$content_wrapper.toggleClass('address-map-open').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function() {
 			$('body').toggleClass('overflow-hidden');
 		});
-		$('#yuu-lateral-nav').toggleClass('lateral-menu-is-open');
+		$('.yuu-address-map').toggleClass('address-map-open');
 		
 		if($('html').hasClass('no-csstransitions')) {
 			$('body').toggleClass('overflow-hidden');
@@ -36,11 +36,11 @@ jQuery(document).ready(function($){
 	$content_wrapper.on('click', function(event) {
 		if (!$(event.target).is('#yuu-menu-trigger, #yuu-menu-trigger span')) {
 			$lateral_menu_trigger.removeClass('is-clicked');
-			$navigation.removeClass('lateral-menu-is-open');
-			$content_wrapper.removeClass('lateral-menu-is-open').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function() {
+			$navigation.removeClass('address-map-open');
+			$content_wrapper.removeClass('address-map-open').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function() {
 				$('body').removeClass('overflow-hidden');
 			});
-			$('#yuu-lateral-nav').removeClass('lateral-menu-is-open');
+			$('.yuu-address-map').removeClass('address-map-open');
 			if($('html').hasClass('no-csstransitions')) {
 				$('body').removeClass('overflow-hidden');
 			}
@@ -48,9 +48,9 @@ jQuery(document).ready(function($){
 		}
 	});
 
-	$('.item-has-children').children('a').on('click', function(event) {
+	$('.yuu-reg-block').children('a').on('click', function(event) {
 		event.preventDefault();
-		$(this).toggleClass('submenu-open').next('.yuu-sub-menu').slideToggle(200).end().parent('.item-has-children').siblings('.item-has-children').children('a').removeClass('submenu-open').next('.yuu-sub-menu').slideUp(200);
+		$(this).toggleClass('block-open').next('ul').slideToggle(200).end().parent('.yuu-reg-block').siblings('.yuu-reg-block').children('a').removeClass('block-open').next('ul').slideUp(200);
 	});
 
 	$dummy_anchor.addClass("yuu-dummy-anchor");
