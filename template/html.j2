@@ -9,22 +9,36 @@
   <link href="html_{{ module }}/css/style.css"  rel="stylesheet">
   <script src="html_{{ module }}/js/modernizr.js"></script>
 </head>
-<body>
-  <header>
-    <div id="header-text">{{ module }} register document</div>
-    <a id="yuu-menu-trigger" href="#0"><span class="yuu-menu-text">MAP</span><span class="yuu-menu-icon"></span></a>
+<body id="top">
+  <nav id="yuu-address-map">
+    <a id="yuu-map-text" href="#top">Address Map</a>
+    <ul>
+      {% for key, block in root %}
+      <li class="yuu-reg-block">
+        <a href="#0">{{block.name}} (0x{{block.offset}})&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        <ul>
+          {% for key, reg in block %}
+          <li class="yuu-reg"><a href="#{{reg.name}}">{{reg.name}}</a></li>
+          {% endfor %}
+        </ul>
+      </li>
+      {% endfor %}
+    </ul>
+  </nav>
+  <header id="yuu-header">
+    <div id="yuu-header-text">{{ module }} register document</div>
   </header>
-  <main class="yuu-main-content">
+  <main id="yuu-main-content">
     {% for key, block in root %}
       {% for key, reg in block %}
-    <div id="information">&nbsp;</div>
-    <hr id="divider" color=#ede8d6>
-    <div id="information">&nbsp;</div>
+    <div class="information">&nbsp;</div>
+    <hr class="divider" color=#ede8d6>
+    <div class="information">&nbsp;</div>
     <h3 id="{{reg.name}}" class="section">{{reg.name}}: {{block.offset | format_hex(reg.offset)}}</h3>
-    <div id="information">{{reg.description}}</div>
-    <div id="information">&nbsp;</div>
+    <div class="information">{{reg.description}}</div>
+    <div class="information">&nbsp;</div>
     <div id="attribute">Access: {{reg.access}}</div>
-    <table class="reg-table">
+    <table class="yuu-reg-table">
       <thead>
         <tr>
           <th></th>
@@ -59,7 +73,7 @@
       </tbody>
     </table>
     {% for key, field in reg %}
-    <div id="information">&nbsp;</div>
+    <div class="information">&nbsp;</div>
     <h4>{{field.name}}</h4>
     {% if field.size > 1 %}
     <div id="attribute">Bits: [{{field.lsb_pos+field.size-1}}:{{field.lsb_pos}}]</div>
@@ -67,30 +81,15 @@
     <div id="attribute">Bits: [{{field.lsb_pos}}]</div>
     {% endif %}
     <div id="attribute">Access: {{field.access}}</div>
-    <div id="information">&nbsp;</div>
-    <div id="information">{{field.description}}</div>
-    <div id="information">&nbsp;</div>
+    <div class="information">{{field.description}}</div>
+    <div class="information">&nbsp;</div>
     {% endfor %}
-    <div id="information">&nbsp;</div>
-    <div id="information">&nbsp;</div>
+    <div class="information">&nbsp;</div>
+    <div class="information">&nbsp;</div>
       {% endfor %}
     {% endfor %}
   </main>
 
-  <nav class="yuu-address-map">
-    <ul>
-      {% for key, block in root %}
-      <li class="yuu-reg-block">
-        <a href="#0">{{block.name}} (0x{{block.offset}})</a>
-        <ul>
-          {% for key, reg in block %}
-          <li class="yuu-reg"><a href="#{{reg.name}}">{{reg.name}}</a></li>
-          {% endfor %}
-        </ul>
-      </li>
-      {% endfor %}
-    </ul>
-  </nav>
   
   <script src="html_{{ module }}/js/jquery.min.js"></script>
   <script src="html_{{ module }}/js/main.js"></script>

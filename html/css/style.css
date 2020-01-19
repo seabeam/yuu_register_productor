@@ -3,324 +3,123 @@
 Primary style
 
 -------------------------------- */
-html * {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-*, *:after, *:before {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
 html, body {
   height: 100%;
+  font-family: "Lato", sans-serif;
 }
 
-body {
-  font-size: 120%;
-  font-family: "Titillium Web", sans-serif;
-  color: #242e30;
-  background-color: #fff;
+h3 {
+  font-size: 150%;
+  font-weight: 500;
+  color: #323c75;
 }
-
-h1, h2, h3, h4 {
-  font-weight: bold;
+h4 {
+  font-size: 130%;
+  font-weight: 500;
+  color: #323c75;
 }
-
-a {
-  color: #aaaaaa;
-  text-decoration: none;
-}
-
-header {
-  font-size: 120%;
-  font-family: "Titillium Web", sans-serif;
-  color: #fff;
-}
-
-table {
-  border-spacing: 0px;
-  font-size: 100%;
-  font-family: "Titillium Web", sans-serif;
-}
-
 /* -------------------------------- 
 
 Main components 
 
 -------------------------------- */
-.reg-table {
-  border-radius: 0.5em;
-  border-collapse: collapse;
-  font-size: 0.7em;
-  font-weight: normal;
-  width: 80%;
-  max-width: 100%;
-  white-space: nowrap;
-  background-color: #fff;
-  border: 1px solid #ccc;
-}
 
-.reg-table th, .reg-table td {
-  text-align: center;
-  padding: 0.25em;
-  border: 1px solid #ccc;
-  width: 2em;
-}
-
-.reg-table thead th {
-  color: #fff;
-  background: #4e6361;
-  border-top: none;
-  font-weight: bold;
-}
-
-.reg-table th:first-child, .reg-table td:first-child {
-  border-left: none;
-}
-
-.reg-table th:first-child {
-  border-radius: 0.5em 0 0 0;
-  font-weight: bold;
-}
-
-.reg-table th:last-child {
-  border-radius: 0 0.5em 0 0;
-}
-
-.reg-table tr:last-child td:first-child {
-  border-radius: 0 0 0 0.5em;
-}
-
-.reg-table tr:last-child td:last-child {
-  border-radius: 0 0 0.5em 0;
-}
-
-.reg-table #used-field {
-  background-color: #eee8d5;
-}
-
-.reg-table #reserved-field {
-  background-color: #839496;
-}
-
-.yuu-main-content {
-  
-  min-height: 100%;
-  position: relative;
-  background-color: #fff;
-  z-index: 2;
-  padding-top: 20%;
-  padding-left: 20%;
-  
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  -webkit-transition-property: -webkit-transform;
-  -moz-transition-property: -moz-transform;
-  transition-property: transform;
-  -webkit-transition-duration: 0.4s;
-  -moz-transition-duration: 0.4s;
-  transition-duration: 0.4s;
-  font-size: 100%;
-  font-family: "Titillium Web", sans-serif;
-  line-height: 150%;
-}
-
-.yuu-main-content.address-map-open {
-  -webkit-transform: translateX(15.4%);
-  -moz-transform: translateX(15.4%);
-  -ms-transform: translateX(15.4%);
-  -o-transform: translateX(15.4%);
-  transform: translateX(15.4%);
-}
-
-.yuu-main-content #information {
-  white-space: pre-wrap;
-}
-
-@media only screen and (min-width: 900px) {
-  .yuu-main-content {
-    padding-top: 10%;
-  }
-}
-
-header {
+#yuu-header {
+  display: inline-block;
   position: fixed;
-  top: 0%;
-  left: 0;
-  height: 0%;
   width: 100%;
-  background: #4e6361;
-  z-index: 3;
-  
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  -webkit-transition-property: -webkit-transform;
-  -moz-transition-property: -moz-transform;
-  transition-property: transform;
-  -webkit-transition-duration: 0.4s;
-  -moz-transition-duration: 0.4s;
-  transition-duration: 0.4s;
-}
-
-header.address-map-open {
-  /* translate to show the lateral menu */
-  -webkit-transform: translateX(15.4%);
-  -moz-transform: translateX(15.4%);
-  -ms-transform: translateX(15.4%);
-  -o-transform: translateX(15.4%);
-  transform: translateX(15.4%);
-}
-
-header.is-fixed {
-  position: fixed;
-}
-
-@media only screen and (min-width: 900px) {
-  header {
-    height: 3em;
-  }
-}
-
-#yuu-menu-trigger {
-  top: 0%;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: #64807d;
-  transition: background 0.2s;
-  display: inline-block;
-  position: fixed;
-}
-#yuu-menu-trigger .yuu-menu-text {
-  top: 0%;
-  left: -5%;
-  height: 100%;
-  color: #fff;
-  font-weight: bold;
-  font-size: 90%;
+  height: 10%;
+  background: #fff;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #E5E5E5;
   overflow: hidden;
-  display: inline-block;
-  position: relative;
-}
-#yuu-menu-trigger .yuu-menu-icon {
-  top: -8%;
-  left: 10%;
-  width: 50%;
-  height: 50%;
-  overflow: hidden;
-  display: inline-block;
-  position: relative;
-  background: url("../img/option.svg") no-repeat center center;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
-@media only screen and (min-width: 900px) {
-  #yuu-menu-trigger {
-    width: 120px;
-    padding-left: 1.25em;
-  }
-  #yuu-menu-trigger .yuu-menu-text {
-    display: inline-block;
-    line-height: 70px;
-  }
-}
-
-.yuu-address-map {
-  position: fixed;
-  height: 100%;
-  left: 0;
-  top: 0;
-  visibility: hidden;
-  z-index: 1;
-  width: 200em;
+#yuu-header-text {
   display: block;
-  background-color: #242e30;
-  overflow: auto;
-  overflow-y: auto;
-  
-  -webkit-transition: -webkit-transform .4s 0s, visibility 0s .4s;
-  -moz-transition: -moz-transform .4s 0s, visibility 0s .4s;
-  transition: transform .4s 0s, visibility 0s .4s;
+  position: relative;
+  width: auto;
+  top: 35%;
+  color: #323c75;
+
+  font-size: 180%;
+  font-weight: 500;
+  text-align: center;
 }
 
-.yuu-address-map > ul {
-  margin: 2% 0;
+
+
+#yuu-address-map {
+  display: inline-block;
+  position: fixed;
+  width: auto;
+  height: 100%;
+  top: 10%;
+  background:#f4f7f7;
+  overflow: scroll;
+  overflow-y: scroll;
 }
 
-.yuu-address-map >ul > li >ul {
-  padding: 0 0.5%;
+#yuu-map-text {
+  display: block;
+  position: relative;
+  width: auto;
+  top: 5%;
+  color: #323c75;
+
+  font-size: 130%;
+  font-weight: 600;
+  text-align: center;
+}
+
+#yuu-address-map > ul {
+  margin: 30% 0;
+}
+
+#yuu-address-map >ul > li > ul {
   display: none;
+  margin: 0 0 0 8%;
 }
-.yuu-address-map a {
+
+#yuu-address-map a {
   display: block;
   line-height: 2em;
-  padding: 0 16px 0 32px;
-  color: #aab5b7;
+  padding: 0 1em 0 1em;
+  color: #323c75;
+  text-decoration: none;
 }
-.yuu-address-map a.current {
+
+#yuu-address-map a.current {
   background-color: #3a4a4d;
-  color: #fff;
-}
-.no-touch .yuu-address-map a:hover {
-  color: #fff;
+  color: #d15423;
 }
 
-.yuu-address-map.address-map-open {
-  -webkit-transform: translateX(0);
-  -moz-transform: translateX(0);
-  -ms-transform: translateX(0);
-  -o-transform: translateX(0);
-  transform: translateX(0);
-  visibility: visible;
-  -webkit-transition: -webkit-transform .4s 0s, visibility 0s 0s;
-  -moz-transition: -moz-transform .4s 0s, visibility 0s 0s;
-  transition: transform .4s 0s, visibility 0s 0s;
-  
-  -webkit-overflow-scrolling: touch;
+.no-touch #yuu-address-map a:hover {
+  color: #d15423;
 }
 
-.yuu-address-map .yuu-reg-block > a {
+#yuu-address-map .yuu-reg-block > a {
   position: relative;
   font-weight: 600;
 }
-.yuu-address-map .yuu-reg-block > a::after {
-  content: '';
-  display: block;
-  height: 11px;
-  width: 8px;
-  position: absolute;
-  top: 50%;
-  bottom: auto;
-  right: 1em;
-}
-.yuu-address-map .yuu-reg-block > a.block-open::after {
-  /* -webkit-transform: translateY(-50%) rotate(90deg);
-  -moz-transform: translateY(-50%) rotate(90deg);
-  -ms-transform: translateY(-50%) rotate(90deg);
-  -o-transform: translateY(-50%) rotate(90deg);
-  transform: translateY(-50%) rotate(90deg); */
+
+
+/*************** main ***************/
+#yuu-main-content {
+  padding-top: 10%;
+  padding-left: 20%;
+  font-size: 100%;
+  line-height: 2em;
+  background-color: #fff;
 }
 
-#header-text {
-  display: block;
-  position: relative;
-  top: -5%;
-  left: 40%;
-  font-size: 130%;
-  height: 100%;
-  color: #fff;
-  font-weight: 400;
-}
-@media only screen and (min-width: 900px) {
-  #header-text {
-    margin: 22px 0 0 30px;
-  }
+#yuu-main-content .information {
+  white-space: pre-wrap;
+  font-size: 110%;
+  color: #d15423;
 }
 
 .yuu-dummy-anchor:before {
@@ -328,14 +127,69 @@ header.is-fixed {
   display: block;
   position: relative;
   width: 0;
-  height: 4em;
-  margin-top: -4em;
+  height: 6em;
+  margin-top: 0;
 }
 
-#divider {
-  align-items: left;
+.divider {
   display: inline-block;
+  align-items: left;
   width: 80%;
-  color: #ede8d6;
   size: 2;
+  color: #ede8d6;
+}
+
+.yuu-reg-table {
+  width: 80%;
+  max-width: 100%;
+  background-color: #fff;
+  font-size: 0.7em;
+  font-weight: normal;
+  border-radius: 0.5em;
+  border-collapse: collapse;
+  border: 1px solid #ccc;
+  white-space: nowrap;
+}
+
+.yuu-reg-table th, .yuu-reg-table td {
+  width: 2em;
+  padding: 0.25em;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.yuu-reg-table thead th {
+  border-top: none;
+  font-weight: bold;
+  color: #fff;
+  background: #4e6361;
+}
+
+.yuu-reg-table th:first-child, .yuu-reg-table td:first-child {
+  border-left: none;
+}
+
+.yuu-reg-table th:first-child {
+  border-radius: 0.5em 0 0 0;
+  font-weight: bold;
+}
+
+.yuu-reg-table th:last-child {
+  border-radius: 0 0.5em 0 0;
+}
+
+.yuu-reg-table tr:last-child td:first-child {
+  border-radius: 0 0 0 0.5em;
+}
+
+.yuu-reg-table tr:last-child td:last-child {
+  border-radius: 0 0 0.5em 0;
+}
+
+.yuu-reg-table #used-field {
+  background-color: #eee8d5;
+}
+
+.yuu-reg-table #reserved-field {
+  background-color: #839496;
 }
