@@ -34,3 +34,7 @@ optional arguments:
 　　　　　　　　　　　　[Optional] Use UVM factory  
 　-c, --coverage  
 　　　　　　　　　　　　[Optional] Use functional coverage  
+
+**Example:**  
+yrp.py -n SLAVE -t uvm_reg_model.j2 -i .\test\reg.xlsx -o test -f  
+yrp.py -n SLAVE -t html.j2 -i .\test\reg.xlsx -o test
