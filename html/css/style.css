@@ -18,12 +18,11 @@ h4 {
   font-weight: 500;
   color: #323c75;
 }
-/* -------------------------------- 
 
-Main components 
 
--------------------------------- */
-
+/* -------------
+     header 
+ ------------ */
 #yuu-header {
   display: inline-block;
   position: fixed;
@@ -51,7 +50,9 @@ Main components
 }
 
 
-
+/* --------
+    map 
+ ------- */
 #yuu-address-map {
   display: inline-block;
   position: fixed;
@@ -107,7 +108,9 @@ Main components
 }
 
 
-/*************** main ***************/
+/* --------
+    main 
+ ------- */
 #yuu-main-content {
   padding-top: 10%;
   padding-left: 20%;
@@ -116,10 +119,20 @@ Main components
   background-color: #fff;
 }
 
-#yuu-main-content .information {
+#yuu-main-content #reg_desc {
   white-space: pre-wrap;
   font-size: 110%;
   color: #d15423;
+}
+
+#yuu-main-content #field_desc {
+  white-space: pre-wrap;
+  font-size: 110%;
+  color: #d15423;
+}
+
+#yuu-main-content .field_even {
+  background: #f4f7f7;
 }
 
 .yuu-dummy-anchor:before {
@@ -139,6 +152,9 @@ Main components
   color: #ede8d6;
 }
 
+/* -------------
+    reg table 
+ ------------ */
 .yuu-reg-table {
   width: 80%;
   max-width: 100%;
@@ -161,8 +177,9 @@ Main components
 .yuu-reg-table thead th {
   border-top: none;
   font-weight: bold;
-  color: #fff;
-  background: #4e6361;
+  color: #000;
+  background: #fbf6e4;
+  
 }
 
 .yuu-reg-table th:first-child, .yuu-reg-table td:first-child {
@@ -186,10 +203,11 @@ Main components
   border-radius: 0 0 0.5em 0;
 }
 
-.yuu-reg-table #used-field {
-  background-color: #eee8d5;
+.yuu-reg-table .used-field {
+  background: #f4f7f7;
 }
 
-.yuu-reg-table #reserved-field {
-  background-color: #839496;
+.yuu-reg-table .reserved-field {
+  /* background-color: #839496; */
+  color: #aaaaaa;
 }

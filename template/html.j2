@@ -31,12 +31,12 @@
   <main id="yuu-main-content">
     {% for key, block in root %}
       {% for key, reg in block %}
-    <div class="information">&nbsp;</div>
+    <div>&nbsp;</div>
     <hr class="divider" color=#ede8d6>
-    <div class="information">&nbsp;</div>
+    <div>&nbsp;</div>
     <h3 id="{{reg.name}}" class="section">{{reg.name}}: {{block.offset | format_hex(reg.offset)}}</h3>
-    <div class="information">{{reg.description}}</div>
-    <div class="information">&nbsp;</div>
+    <div id="reg_desc">{{reg.description}}</div>
+    <div>&nbsp;</div>
     <div id="attribute">Access: {{reg.access}}</div>
     <table class="yuu-reg-table">
       <thead>
@@ -52,16 +52,20 @@
           <th>name</th>
           {% for key, field in reg %}
           {% if field.reserved %}
-          <td colspan="{{field.size}}" id="reserved-field">{{field.name}}</td>
+          <td colspan="{{field.size}}" class="reserved-field">{{field.name}}</td>
           {% else %}
-          <td colspan="{{field.size}}" id="used-field">{{field.name}}</td>
+          <td colspan="{{field.size}}" class="used-field">{{field.name}}</td>
           {% endif %}
           {% endfor %}
         </tr>
         <tr>
           <th>access</th>
           {% for key, field in reg %}
-          <td colspan="{{field.size}}">{{field.access}}</td>
+          {% if field.reserved %}
+          <td colspan="{{field.size}}" class="reserved-field">{{field.access}}</td>
+          {% else %}
+          <td colspan="{{field.size}}" class="used-field">{{field.access}}</td>
+          {% endif %}
           {% endfor %}
         </tr>
         <tr>
@@ -73,19 +77,23 @@
       </tbody>
     </table>
     {% for key, field in reg %}
-    <div class="information">&nbsp;</div>
-    <h4>{{field.name}}</h4>
-    {% if field.size > 1 %}
-    <div id="attribute">Bits: [{{field.lsb_pos+field.size-1}}:{{field.lsb_pos}}]</div>
+    {% if loop.index % 2 == 1 %}
+      {% set field_class="field_even" %}
     {% else %}
-    <div id="attribute">Bits: [{{field.lsb_pos}}]</div>
+      {% set field_class="field_odd" %}
     {% endif %}
-    <div id="attribute">Access: {{field.access}}</div>
-    <div class="information">{{field.description}}</div>
-    <div class="information">&nbsp;</div>
+    <div class={{ field_class }}>&nbsp;</div>
+    <h4 class={{ field_class }}>{{field.name}}</h4>
+    {% if field.size > 1 %}
+    <div id="attribute" class={{ field_class }}>Bits: [{{field.lsb_pos+field.size-1}}:{{field.lsb_pos}}]</div>
+    {% else %}
+    <div id="attribute" class={{ field_class }}>Bits: [{{field.lsb_pos}}]</div>
+    {% endif %}
+    <div id="attribute" class={{ field_class }}>Access: {{field.access}}</div>
+    <div id="field_desc" class={{ field_class }}>{{field.description}}</div>
+    <div class={{ field_class }}>&nbsp;</div>
     {% endfor %}
-    <div class="information">&nbsp;</div>
-    <div class="information">&nbsp;</div>
+
       {% endfor %}
     {% endfor %}
   </main>
