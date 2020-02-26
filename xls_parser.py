@@ -4,7 +4,7 @@
 ###################################################################################
 
 from openpyxl import load_workbook
-from openpyxl.utils import *
+from openpyxl.utils import get_column_letter
 
 from register_node import RegisterNode, walk
 
@@ -24,7 +24,7 @@ prefix '0x' supported" %(data))
 
 
     def get_sheet(self, name):
-        self.sheet = load_workbook(name)['Info']
+        self.sheet = load_workbook(name, data_only=True)['Info']
 
 
     def in_range(self, column, start, end):
@@ -159,10 +159,13 @@ prefix '0x' supported" %(data))
                     if column == self.header['register']:
                         reg = RegisterNode(cell.value)
                         reg.has_hdl_path = False
+                        reg.field_num = 0
                         block[cell.value] = reg
                         continue
                     if column == self.header['field']:
                         field = RegisterNode(cell.value)
+                        reg.field_num += 1
+                        field.index = reg.field_num - 1
                         reg[cell.value] = field
                         continue
         return root

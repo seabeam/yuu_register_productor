@@ -28,6 +28,21 @@ class block_{{ module }}_{{ block.name }} extends uvm_reg_block;
     {% endif %}
     {{ reg.name }}.configure(this, null, "");
     {{ reg.name }}.build();
+    {% if reg.has_hdl_path %}
+    {{ reg.name }}.add_hdl_path('{
+      {% for key, field in reg %}
+        {% if field.size == width %}
+      '{"{{ field.hdl_path }}", -1, -1}
+        {% else %}
+          {% if field.index + 1 == reg.field_num %}
+      '{"{{ field.hdl_path }}", {{ field.size }}, {{field.lsb_pos }}}
+          {% else %}
+      '{"{{ field.hdl_path }}", {{ field.size }}, {{field.lsb_pos }}},
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    });
+    {% endif %}
     default_map.add_reg({{ reg.name }}, {{ block.width }}'h{{ reg.offset }}, "{{ reg.access.upper() }}");
     {% endfor %}
   endfunction

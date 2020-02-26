@@ -38,8 +38,6 @@ if __name__ == '__main__':
     template = env.get_template(args.template_name)
 
     root = parser.parse_data()
-    root = parser.fill_reserved(root)
-    root = parser.reorder_by_lsb(root)
 
     if not os.path.isdir('%s' %args.output_path):
         print("Output folder (%s) cannot be reached" %(args.output_path))
@@ -56,6 +54,8 @@ if __name__ == '__main__':
         para_coverage = "UVM_NO_COVERAGE"
 
     if args.template_name == 'html.j2':
+        root = parser.fill_reserved(root)
+        root = parser.reorder_by_lsb(root)
         with open('%s/%s.htm' %(args.output_path, args.module_name), 'w', encoding='UTF-8') as f:
             src = "%s/html" %(script_dir)
             des = "%s/html_%s" %(args.output_path, args.module_name)
