@@ -35,9 +35,9 @@ class block_{{ module }}_{{ block.name }} extends uvm_reg_block;
       '{"{{ field.hdl_path }}", -1, -1}
         {% else %}
           {% if field.index + 1 == reg.field_num %}
-      '{"{{ field.hdl_path }}", {{ field.size }}, {{field.lsb_pos }}}
+      '{"{{ field.hdl_path }}", {{ field.lsb_pos }}, {{field.size }}}
           {% else %}
-      '{"{{ field.hdl_path }}", {{ field.size }}, {{field.lsb_pos }}},
+      '{"{{ field.hdl_path }}", {{ field.lsb_pos }}, {{field.size }}},
           {% endif %}
         {% endif %}
       {% endfor %}
