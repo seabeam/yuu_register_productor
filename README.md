@@ -6,13 +6,13 @@ It has a full template to generate uvm register, register HTML. You can implemen
 openpyxl jinja2
 
 ## License
-Under Apache License, Version 2.0
+Under MIT License
 
 ## NOTICE
 For HTML5 code exist in HTML template, only new version of browser supported(Bug have exclude Chrome)
 
 ## More
-Feel free to contact via email: seabeam@yahoo.com
+Feel free to contact via email: seabeam@qq.com
 
 ## Usage
 usage: yrp.py [-h] -n MODULE_NAME -t TEMPLATE_NAME -i INPUT_XLSX  
@@ -29,12 +29,13 @@ optional arguments:
 　-i INPUT_XLSX, --input INPUT_XLSX  
 　　　　　　　　　　　　[Required] xlsx file for generator input  
 　-o OUTPUT_PATH, --output OUTPUT_PATH  
-　　　　　　　　　　　　[Optional] Output path, current path by default  
+　　　　　　　　　　　　[Optional] Output path, 'reg_out' in current path by default  
 　-f, --factory  
 　　　　　　　　　　　　[Optional] Use UVM factory  
 　-c, --coverage  
 　　　　　　　　　　　　[Optional] Use functional coverage  
 
 **Example:**  
-yrp.py -n SLAVE -t uvm_reg_model.j2 -i .\test\reg.xlsx -o test -f  
-yrp.py -n SLAVE -t html.j2 -i .\test\reg.xlsx -o test
+cd ./test
+yrp -n SLAVE -t uvm_reg_model.j2 -i reg.xlsx -o test -f  
+yrp -n SLAVE -t html.j2 -i reg.xlsx -o test

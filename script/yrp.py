@@ -19,7 +19,7 @@ if __name__ == '__main__':
     arg_parser.add_argument('-n', '--name', required=True, dest='module_name', help='[Required] Expected module name')
     arg_parser.add_argument('-t', '--template', required=True, dest='template_name', help='[Required] Template name, file extension should be .j2')
     arg_parser.add_argument('-i', '--input', required=True, dest='input_xlsx', help='[Required] xlsx file for generator input')
-    arg_parser.add_argument('-o', '--output', required=False, dest='output_path', default='./', help='[Optional] Output path, current path by default')
+    arg_parser.add_argument('-o', '--output', required=False, dest='output_path', default='./reg_out', help='[Optional] Output path, \'reg_out\' in current path by default')
     arg_parser.add_argument('-f', '--factory', required=False, dest='use_factory', action="store_true", help='[Optional] Use UVM factory')
     arg_parser.add_argument('-c', '--coverage', required=False, dest='use_coveage', action="store_true", help='[Optional] Use functional coverage')
 
@@ -29,7 +29,7 @@ if __name__ == '__main__':
     parser = XLSParser()
     parser.get_sheet('%s' %(args.input_xlsx))
 
-    template_dir = '%s/template' %(script_dir)
+    template_dir = '%s/../template' %(script_dir)
     env = Environment(loader=FileSystemLoader(template_dir))
     env.trim_blocks = True
     env.lstrip_blocks = True
@@ -39,9 +39,15 @@ if __name__ == '__main__':
 
     root = parser.parse_data()
 
-    if not os.path.isdir('%s' %args.output_path):
-        print("Output folder (%s) cannot be reached" %(args.output_path))
+    if args.output_path != './reg_out':
+        args.output_path += '/reg_out'
+    if os.path.isdir('%s' %args.output_path):
+        print("[Error] Output folder (%s) already exsits" %(args.output_path))
         exit(1)
+    try:
+        os.makedirs(args.output_path)
+    except:
+        raise IOError('[Error] Could not create output folder')
 
     if args.use_factory:
         para_factory = True
@@ -57,7 +63,7 @@ if __name__ == '__main__':
         root = parser.fill_reserved(root)
         root = parser.reorder_by_lsb(root)
         with open('%s/%s.htm' %(args.output_path, args.module_name), 'w', encoding='UTF-8') as f:
-            src = "%s/html" %(script_dir)
+            src = "%s/../html" %(script_dir)
             des = "%s/html_%s" %(args.output_path, args.module_name)
             if os.path.isdir(des):
                 shutil.rmtree(des)
