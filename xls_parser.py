@@ -1,5 +1,5 @@
 ###################################################################################
-# Copyright 2019 seabeam@yahoo.com - Licensed under the Apache License, Version 2.0
+# Copyright 2023 seabeam@qq.com - Licensed under the MIT License
 # For more information, see LICENCE in the main folder
 ###################################################################################
 
