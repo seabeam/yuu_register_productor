@@ -15,8 +15,11 @@ For HTML5 code exist in HTML template, only new version of browser supported(Bug
 Feel free to contact via email: seabeam@qq.com
 
 ## Usage
-usage: yrp.py [-h] -n MODULE_NAME -t TEMPLATE_NAME -i INPUT_XLSX  
-　　　　　　[-o OUTPUT_PATH] [-f] [-c]
+**Note:**  
+Please add the path of yrp `bin` folder to your `PATH` Environment variable like `set path = (/tools/yuu_register_productor/bin $path)` in csh before first time.
+
+usage: yrp [-h] -n MODULE_NAME -t TEMPLATE_NAME -i INPUT_XLSX  
+　　　　      [-o OUTPUT_PATH] [-f] [-c]
 
 Register utils generator for DFV
 
@@ -36,6 +39,6 @@ optional arguments:
 　　　　　　　　　　　　[Optional] Use functional coverage  
 
 **Example:**  
-cd ./test
+cd ./test  
 yrp -n SLAVE -t uvm_reg_model.j2 -i reg.xlsx -o test -f  
 yrp -n SLAVE -t html.j2 -i reg.xlsx -o test
